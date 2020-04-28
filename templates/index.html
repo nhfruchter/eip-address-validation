@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pure-g">
+  <div id="form" class="pure-u-1 pure-u-md-2-3 l-box"> 
+      <h1>Format address for the IRS stimulus portal</h1>
+      
+      <form id="address-form" class="pure-form pure-form-aligned" method="post" action="{{url_for('formatAddress')}}">
+          <fieldset>                         
+              <div class="pure-g"> 
+                  <div class="pure-u-1">
+                      <label for="addr2">Address 1</label>
+                      <input name="addr2" type="text" placeholder="1600 Pennsylvania Ave NW" class="pure-u-23-24">
+                  </div>
+
+                  <div class="pure-u-1">
+                      <label for="addr1">Address 2</label>
+                      <input name="addr1" type="text" placeholder="Unit 123" class="pure-u-23-24">
+                  </div>
+                  
+                  <div class="pure-u-1 pure-u-md-14-24">
+                      <label for="city">City</label>
+                      <input name="city" type="text" placeholder="Washington" class="pure-u-23-24">
+                  </div>
+
+                  <div class="pure-u-1-2 pure-u-md-3-24">
+                      <label for="state">State</label>
+                      <input name="state" type="text" placeholder="DC" class="pure-u-22-24">
+                  </div>
+              
+                  <div class="pure-u-1-2 pure-u-md-5-24">
+                      <label for="state">ZIP</label>
+                      <input name="zip5" type="text" placeholder="20500" class="pure-u-22-24">
+                  </div>
+              </div>      
+              
+              <br />
+              {{ recaptcha }}
+              
+              <p><button type="submit" class="pure-button pure-button-primary pure-input-1">Submit</button></p>
+
+          </fieldset>
+      </form>              
+  </div> <!-- md-2-3 -->
+  <div id="explain" class="pure-u-1 pure-u-md-1-3 l-box">
+      <h2>What's this?</h2>
+      <p>The U.S. government has been sending out <a href="https://www.irs.gov/coronavirus/economic-imapact-payments">Economic Impact Payments</a> through the IRS due to the coronavirus pandemic.</p>
+      <p>People have reported issues using the <a href="https://sa.www4.irs.gov/irfof-wmsp/login">IRS status portal</a>. One issue might be <strong>address formatting</strong>: the tool wants a standard format that not everyone knows, especially for complex addresses like PO boxes or apartments.
+      </p>     
+      
+      <h2>What's the form do?</h2>
+      <p>Put in your address. This site will ask the US Postal Service to return a standardized, valid address that matches. This might make it easier to use the portal.</p>
+      
+      <hr />
+      <p class="disclaimer">
+          The address information you submit in this form is passed to the United States Postal Service through their <a href="https://www.usps.com/business/web-tools-apis/">Web Tool APIs</a>.
+          Submitted addresses are not logged or stored by this site and are immediately discarded after a result is returned. 
+      </p>      
+      
+      <p class="disclaimer">This site is not affiliated with the USPS or the IRS. I hope it's helpful, but accuracy isn't guaranteed. Use at your own risk.</p>
+      
+      <p class="disclaimer">Made by <a href="https://twitter.com/nhfruchter">@nhfruchter</a> &bull; <a href="https://github.com/nhfruchter/eip-address-validation">Source code</a></p>
+  </div>
+</div> <!-- pure-g outer -->
+{% endblock %}

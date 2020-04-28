@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Address formatter for the IRS EIP</title>
+  <link rel="stylesheet" 
+      href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" 
+      integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" 
+      crossorigin="anonymous" />
+  <link rel="stylesheet" 
+      href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css"
+      integrity="sha384-e+NM0rMilIXo+lz6+dXhoHMjd2iTSxNsCHpqkvuSBsAhwMDRF/Wn2QRRNaLxTcN/"
+      crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+</head>
+<body>
+  <div id="wrap">
+     {% block content %}
+     {% endblock %}
+  </div> <!-- /wrap -->
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21278853-10"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-21278853-10');
+  </script>
+</body>
+</html>

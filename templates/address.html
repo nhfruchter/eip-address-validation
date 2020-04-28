@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="pure-g">
+  <div id="form" class="pure-u-1 pure-u-md-2-3 l-box"> 
+      {% if result.get('error') %}
+      <h1>There's something wrong with that address.</h1>
+      <p><span class="alert">{{result.error}}</span></p>
+      <br />
+      <a href="{{url_for('home')}}" class="pure-button pure-button-primary">Try again &crarr;</a>
+
+      {% else %}      
+      <h1>Your standardized address</h1>
+      
+      {% if result.get('ReturnText') %}
+      <div class="alert">
+          <p><strong>Heads up</strong>: {{result.get('ReturnText')}}</p>
+          <p>You can try using the result below, but it may not be accurate.</p>
+      </div>      
+      {% endif %}
+      
+      <p>Try copying {%if result.get('Address2')%}one of {%endif%}the following (including caps) into the IRS tracker:</p>
+      <form class="pure-form pure-form-stacked" id="irs-mock">
+          <fieldset>
+              {% if result.get('Address1') %}
+              <label for="irs-mock-addr-2">Street Address {%if result.get('Address1')%}- Option 1 (<em>try this first</em>){%endif%}</label>
+              <input id="irs-mock-addr-2" type="text" value="{{result.Address2}} #{{result.Address1.split(' ')[-1]}}" readonly class="pure-u-23-24">
+              
+              {% endif %}
+              <label for="irs-mock-addr">Street Address {%if result.get('Address1')%}- Option 2 (<em>try if the other doesn't work</em>){%endif%}</label>
+              <input id="irs-mock-addr" type="text" value="{{result.Address2.replace('# ','#')}} {{result.Address1}}" readonly class="pure-u-23-24">
+              
+              <label for="irs-mock-zip">ZIP or Postal Code</label>
+              <input id="irs-mock-zip" type="text" value="{{result.Zip5}}" readonly size="10" class="pure-u-23-24"> 
+          </fieldset>
+      </form>      
+      
+      <p><a href="https://sa.www4.irs.gov/irfof-wmsp/login" class="pure-button pure-button-primary" target="_blank">Open IRS stimulus tracker &rarr;</a></p>
+      <p>      <a href="{{url_for('home')}}" class="pure-button pure-button">I'm done &crarr;</a></p>
+      
+      {% endif %}
+  </div> <!-- md-2-3 -->
+  <div id="explain" class="pure-u-1 pure-u-md-1-3 l-box">
+      {% if not result.get('error') %}
+      <h1>Other info</h1>
+
+      <p>You entered:</p>
+      <pre>
+      {{original.addr2}}
+      {{original.addr1}}
+      {{original.city}} {{original.state}} {{original.zip5}}          
+      </pre>  
+      
+      <p>For reference, the USPS says the official form of this address is:</p>
+      <div id="formatted-address">
+          <p>{{result.Address2}}</p>
+          <p>{{result.Address1}}</p>
+          <p>{{result.City}}, {{result.State}} {{result.Zip5}}{% if result.Zip4 %}-{{result.Zip4}}{% endif %}</p>
+      </div>      
+      {%endif%}
+      
+  </div>
+</div> <!-- pure-g outer -->
+{% endblock %}

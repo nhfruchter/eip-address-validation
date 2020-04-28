@@ -1,0 +1,16 @@
+/* Custom page elements */
+#wrap{margin:5vw;}
+p.disclaimer{font-size:0.8em;}
+#address-form input{margin-top:0.33em;}
+#formatted-address{padding:1em;line-height:0.5em;background:#f2f2f2;border:2px solid #999;color:#333;}
+form#irs-mock{padding:1em;border:2px solid #2196F3;background:#E3F2FD;}
+#irs-mock fieldset label{font-weight:bold;font-size:0.9em;margin-top:1em;}   
+.alert {background: #FFEBEE; padding: 1em;} 
+/* Base elements */
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+#explain a, #explain a:visited { color: #053A98; }    
+/* Grid styles*/
+.pure-g > div{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+fieldset .pure-u-1,.pure-u-1-2{margin-top:1em;}
+.l-box{padding:1em;}      
